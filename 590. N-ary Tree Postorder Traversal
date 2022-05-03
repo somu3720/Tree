@@ -1,0 +1,22 @@
+
+
+class Solution {
+    List<Integer> res = new ArrayList<>();
+
+    public List<Integer> postorder(Node root) {
+        if(root == null) return res;
+        postorderHelper(root);
+        return res;
+    }
+    
+    public void postorderHelper(Node node)
+    {
+        if(node.children == null) return;
+        
+        for(Node child : node.children)
+            postorderHelper(child);
+        
+        res.add(node.val);
+        
+    }
+}
