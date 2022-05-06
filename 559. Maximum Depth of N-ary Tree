@@ -1,0 +1,67 @@
+#DFS
+
+class Solution {
+    private int maxdepth;
+    public int maxDepth(Node root) {
+        
+        if(root == null)
+            return 0;
+        
+        getMaxDepth(root, 1);
+        
+        
+        return maxdepth;
+        
+        
+           
+    }
+    
+    public void getMaxDepth(Node node, int depth)
+    {
+        if(node == null)
+            return;
+        
+        maxdepth = Math.max(depth, maxdepth);
+        
+        for(Node child : node.children)
+            getMaxDepth(child, depth + 1);
+            
+    }
+}
+
+
+
+#BFS
+..........................................
+class Solution {
+    public int maxDepth(Node root) {
+        
+        if(root == null)
+            return 0;
+        
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        
+        int depth = 0;
+        
+        while(!q.isEmpty())
+        {
+            int size = q.size();
+            
+            for(int i = 0; i < size; i++)
+            {
+                Node curr = q.poll();
+                
+                for(Node child : curr.children)   // add children of a node
+                    q.add(child);
+                    
+            }
+            
+            depth++;
+        }
+        
+        return depth;
+    }
+}
+
+// https://www.youtube.com/watch?v=TtAflDtqwVg
