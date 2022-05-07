@@ -1,0 +1,32 @@
+
+class Solution {
+    public boolean findTarget(TreeNode root, int k) {
+        
+        
+        // method1. => convert tree to sorted array using inorder  and then use two pointer apporach
+        // method2 => hashset use
+        
+        Set<Integer> s = new HashSet<>();
+        
+        return preorder(root, s, k);
+    }
+    
+    public boolean preorder(TreeNode root, Set<Integer> s, int k)
+    {
+        if(root == null)
+            return false;
+        
+        int counterEle = k - root.val;
+        
+        if(s.contains(counterEle))
+            return true;
+        
+        s.add(root.val);
+        
+        return preorder(root.left, s, k) || preorder(root.right, s, k);
+        
+        
+    }
+}
+
+//https://www.youtube.com/watch?v=Rwu6cR9RZ6g
