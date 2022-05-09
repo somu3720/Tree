@@ -1,0 +1,38 @@
+
+class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
+        DiaPair t = Diameter(root);
+        
+        return t.dia;
+    }
+    
+class DiaPair{
+    int ht;
+    int dia;
+}
+    public DiaPair Diameter(TreeNode node)
+    {
+        if(node == null)
+        {
+            DiaPair bp = new DiaPair();
+            bp.ht = -1;
+            bp.dia = 0;
+            return bp;
+        }
+        
+        DiaPair lp = Diameter(node.left);
+        DiaPair rp = Diameter(node.right);
+        
+        DiaPair mp = new DiaPair();
+        mp.ht = Math.max(lp.ht, rp.ht) + 1;
+        
+        int f =  lp.ht + rp.ht + 2;
+        
+        mp.dia = Math.max(f, Math.max(lp.dia, rp.dia));
+        
+        return mp;
+    }
+    
+}
+
+//https://www.youtube.com/watch?v=S0Bwgtn32uI&t=437s
