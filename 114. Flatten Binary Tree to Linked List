@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public void flatten(TreeNode root) {
+        
+        if(root == null)
+            return;
+        
+        TreeNode temp_left = root.left;
+         TreeNode temp_right = root.right;
+        
+        root.left = null;
+        
+        flatten(temp_left);
+        flatten(temp_right);
+        
+        root.right = temp_left;
+        
+        TreeNode curr = root;
+        
+        while(curr.right != null)
+        {
+           curr = curr.right;
+        }
+        
+        curr.right = temp_right;
+        
+        
+    }
+}
+.........................................................
+
+
+
+//https://www.youtube.com/watch?v=NOKVBiJwkD0
